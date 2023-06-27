@@ -1,0 +1,12 @@
+.nav-main{
+    height: 65px;
+    background: #b2c1bc;
+}
+
+.nav-main-left{
+    float: left;
+}
+
+.nav-main-right{
+    float: right;
+}

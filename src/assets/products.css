@@ -1,0 +1,19 @@
+.products-main{
+    margin-left: 300px;
+    margin-top: 50px;
+}
+
+.products-row{
+    display: flex;
+}
+
+.product-card{
+    height: 260px;
+    width: 235px;
+    background: darkseagreen;
+}
+
+.product-wrapper{
+    padding: 20px;
+    margin-right: 15px;
+}

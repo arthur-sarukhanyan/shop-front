@@ -1,0 +1,8 @@
+.foot-main{
+    width: 100%;
+    height: 70px;
+    background: darkgray;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}

@@ -1,0 +1,7 @@
+.side-main{
+    height: 100%;
+    min-height: 1200px;
+    width: 300px;
+    min-width: 300px;
+    background: dimgray;
+}

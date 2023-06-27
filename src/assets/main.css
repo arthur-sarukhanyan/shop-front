@@ -1,0 +1,15 @@
+@import './base.css';
+
+#app {
+
+}
+
+.wrapper{
+    position: relative;
+    min-height: 980px;
+    display: flex;
+}
+
+.hidden{
+    display: none;
+}
