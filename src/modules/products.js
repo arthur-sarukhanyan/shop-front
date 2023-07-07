@@ -1,21 +1,22 @@
+import httpClient from "@/services/axios";
+
 export default {
     namespaced: true,
     state: {
-        data: {},
+        data: [],
     },
     getters: {
         data: state => state.data,
     },
     actions: {
         async getData({commit }) {
-            console.log(this.$axios);
-            const data = await this.$axios.get('products');
-            commit('SET_DATA', await data.json());
+            const data = await httpClient.httpClient.get('products');
+            commit('SET_DATA', await data.data);
         },
     },
     mutations: {
         SET_DATA(state, data) {
-            state.data = data;
+            state.data = data.data;
         },
     }
 }

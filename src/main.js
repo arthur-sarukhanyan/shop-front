@@ -6,6 +6,8 @@ import './assets/footer.css'
 import './assets/products.css'
 import './assets/auth.css'
 
+import './assets/extra/extraAssets'
+
 import { createApp } from 'vue'
 import App from './App.vue'
 import axios from './services/axios'
@@ -14,9 +16,7 @@ import store from './services/store';
 
 const app = createApp(App);
 
-app.use(axios, {
-    baseUrl: import.meta.env.VITE_API_URL,
-});
+// app.use(axios);
 
 app.use(router);
 app.use(store);

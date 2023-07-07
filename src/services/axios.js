@@ -1,14 +1,8 @@
-import axios from 'axios'
-export default {
-    install: (app, options) => {
-        app.config.globalProperties.$axios = axios.create({
-            baseURL: options.baseUrl,
-            headers: {
-                Authorization: options.token ? `Bearer ${options.token}` : '',
-            },
-            defaults: {
-                withCredentials: true
-            }
-        })
-    },
-}
+import axios from 'axios';
+
+let httpClient = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    timeout: 1000,
+});
+
+export default {httpClient};
