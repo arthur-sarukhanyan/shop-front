@@ -1,9 +1,9 @@
 <template>
-    <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+    <div class="panel-group category-products" id="accordian">
         <div class="panel panel-default" v-for="category of getCategories()">
             <category-item :category="category" :categories="categories" :id="category.id"></category-item>
         </div>
-    </div><!--/category-products-->
+    </div>
 </template>
 
 <script>

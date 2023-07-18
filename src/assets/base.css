@@ -71,3 +71,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.img-sm {
+  max-width: 170px;
+}
+
+.img-mid {
+  max-width: 200px;
+}
+
+.c-pointer{
+  cursor: pointer;
+}

@@ -1,11 +1,11 @@
 <template>
-    <img :src="getImagePath()" :alt="getImageName()">
+    <img :src="getImagePath()" :alt="getImageName()" :class="classes">
 </template>
 
 <script>
 export default {
     name: "AppImageContainer",
-    props: ['image'],
+    props: ['image', 'classes'],
     methods: {
         getImagePath() {
             if (this.image) {

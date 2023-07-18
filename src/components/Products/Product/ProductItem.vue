@@ -3,10 +3,11 @@
         <div class="product-image-wrapper">
             <div class="single-products">
                 <div class="productinfo text-center">
-                    <app-image-container :image="product.image"></app-image-container>
+                    <app-image-container :image="product.image" :classes="'img-mid'"></app-image-container>
                     <h2>{{product.price}}</h2>
                     <p>{{product.name}}</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    <add-to-cart :product="product"></add-to-cart>
+<!--                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
                 </div>
                 <img src="src/assets/extra/images/home/new.png" class="new" alt="" />
             </div>
@@ -22,10 +23,11 @@
 
 <script>
 import AppImageContainer from "@/components/Partials/AppImageContainer.vue";
+import AddToCart from "@/components/Partials/Basket/AddToCart.vue";
 
 export default {
     name: "ProductItem",
-    components: {AppImageContainer},
+    components: {AddToCart, AppImageContainer},
     props: ['product'],
 }
 </script>

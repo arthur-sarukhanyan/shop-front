@@ -10,7 +10,7 @@
                     <div class="product-details"><!--product-details-->
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <app-image-container :image="product.image"></app-image-container>
+                                <app-image-container :image="product.data.image" :classes="'img-big'"></app-image-container>
 <!--                                <img src="src/assets/extra/images/product-details/1.jpg" alt="" />-->
                                 <h3>ZOOM</h3>
                             </div>
@@ -49,17 +49,14 @@
                         <div class="col-sm-7">
                             <div class="product-information"><!--/product-information-->
                                 <img src="src/assets/extra/images/product-details/new.jpg" class="newarrival" alt="" />
-                                <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
+                                <h2>{{product.data.name}}</h2>
                                 <p>Web ID: 1089772</p>
                                 <img src="src/assets/extra/images/product-details/rating.png" alt="" />
                                 <span>
-									<span>US $59</span>
-									<label>Quantity:</label>
-									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
+									<span>US ${{product.data.price}}</span>
+<!--									<label>Quantity:</label>-->
+<!--									<input type="text" value="3" />-->
+                                    <add-to-cart :product="product.data"></add-to-cart>
 								</span>
                                 <p><b>Availability:</b> In Stock</p>
                                 <p><b>Condition:</b> New</p>
@@ -80,10 +77,11 @@
 import {mapState} from "vuex";
 import AppSidebar from "@/components/AppSidebar.vue";
 import AppImageContainer from "@/components/Partials/AppImageContainer.vue";
+import AddToCart from "@/components/Partials/Basket/AddToCart.vue";
 
 export default {
     name: "ProductPage",
-    components: {AppImageContainer, AppSidebar},
+    components: {AddToCart, AppImageContainer, AppSidebar},
     mounted() {
         let id = this.$route.params.id;
         this.$store.dispatch('product/getData', id);

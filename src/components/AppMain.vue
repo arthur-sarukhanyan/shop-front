@@ -13,6 +13,7 @@ import AppFooter from "./AppFooter.vue";
 import Login from "./Auth/Login.vue";
 import AppSlider from "@/components/AppSlider.vue";
 import AppSidebar from "@/components/AppSidebar.vue";
+import {mapState} from "vuex";
 
 export default {
     name: "AppMain",
@@ -22,10 +23,16 @@ export default {
             login: false
         }
     },
+    mounted() {
+        this.$store.dispatch('localBasket/getData');
+    },
     methods: {
         showSlider() {
             return this.$route.path === '/';
         }
+    },
+    computed: {
+        ...mapState(['localBasket'])
     }
 }
 </script>

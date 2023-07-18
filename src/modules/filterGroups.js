@@ -4,17 +4,13 @@ export default {
     namespaced: true,
     state: {
         data: [],
-        filters: {
-            filters: [],
-        },
     },
     getters: {
         data: state => state.data,
-        filters: state => state.filters,
     },
     actions: {
-        async getData({commit, state}) {
-            const data = await httpClient.httpClient.post('products', state.filters);
+        async getData({commit }) {
+            const data = await httpClient.httpClient.get('filter-groups');
             commit('SET_DATA', await data.data);
         },
     },
@@ -22,8 +18,5 @@ export default {
         SET_DATA(state, data) {
             state.data = data.data;
         },
-        SET_FILTERS(state, data) {
-            state.filters = data;
-        }
     }
 }
