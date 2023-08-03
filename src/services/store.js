@@ -4,7 +4,10 @@ import products from "@/modules/products";
 import product from "@/modules/product";
 import categories from "@/modules/categories";
 import filterGroups from "@/modules/filterGroups";
-import localBasket from "@/modules/localBasket";
+import basket from "@/modules/basket";
+import auth from "@/modules/auth";
+import account from "@/modules/account";
+import countries from "@/modules/countries";
 
 // Create a new store instance.
 const store = createStore({
@@ -13,7 +16,10 @@ const store = createStore({
         product,
         categories,
         filterGroups,
-        localBasket,
+        basket,
+        auth,
+        account,
+        countries,
     }
 })
 

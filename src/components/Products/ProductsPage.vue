@@ -12,7 +12,7 @@
                         <h2 class="title text-center">Features Items</h2>
 
                         <div class="col-sm-4" v-for="product of products.data">
-                            <product-item :product="product" @click="navigateTo(product.id)"></product-item>
+                            <product-item :product="product"></product-item>
                         </div>
 
                     </div><!--features_items-->
@@ -33,11 +33,7 @@ export default {
     mounted() {
         this.$store.dispatch('products/getData');
     },
-    methods: {
-        navigateTo(id) {
-            this.$router.push('/product/' + id);
-        }
-    },
+
     computed: {
         ...mapState(['products']),
     },

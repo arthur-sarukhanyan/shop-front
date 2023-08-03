@@ -77,9 +77,18 @@ body {
 }
 
 .img-mid {
-  max-width: 200px;
+  /*max-width: 200px;*/
+  max-height: 200px;
 }
 
 .c-pointer{
   cursor: pointer;
+}
+
+div.has-error input{
+  border: 1px solid #a94442!important;
+}
+
+small.error-msg{
+  color: #a94442;
 }

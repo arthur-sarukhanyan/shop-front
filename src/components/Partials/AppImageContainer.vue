@@ -8,10 +8,13 @@ export default {
     props: ['image', 'classes'],
     methods: {
         getImagePath() {
+            let baseUrl = import.meta.env.VITE_API_BASE_URL;
+            baseUrl.slice(0, -1);
+
             if (this.image) {
-                return import.meta.env.VITE_API_BASE_URL + this.image.path;
+                return baseUrl + this.image.path;
             } else {
-                return import.meta.env.VITE_API_BASE_URL + import.meta.env.VITE_NO_IMAGE;
+                return baseUrl + import.meta.env.VITE_NO_IMAGE;
             }
         },
         getImageName() {

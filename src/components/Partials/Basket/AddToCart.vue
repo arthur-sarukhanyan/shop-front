@@ -1,7 +1,5 @@
 <template>
-<!--    <a href="#" @click="addToCart()" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
-
-    <button type="button" class="btn btn-fefault cart" @click="addToCart()">
+    <button type="button" class="btn btn-fefault cart" @click.stop="addToCart()">
         <i class="fa fa-shopping-cart"></i>
         Add to cart
     </button>
@@ -16,11 +14,11 @@ export default {
     props: ['product'],
     methods: {
         addToCart() {
-            this.$store.dispatch('localBasket/setData', this.product);
+            this.$store.dispatch('basket/addProduct', this.product);
         }
     },
     computed: {
-        ...mapState(['localBasket']),
+        ...mapState(['basket']),
     }
 }
 </script>

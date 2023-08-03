@@ -5,11 +5,11 @@
             <table class="table table-condensed total-result">
                 <tr>
                     <td>Cart Sub Total (Excl. VAT)</td>
-                    <td>$ {{getExclVat().toFixed(2)}}</td>
+                    <td>$ {{totals.exclVat.toFixed(2)}}</td>
                 </tr>
                 <tr>
                     <td>Tax</td>
-                    <td>$ {{getVat().toFixed(2)}}</td>
+                    <td>$ {{totals.vat.toFixed(2)}}</td>
                 </tr>
                 <tr class="shipping-cost">
                     <td>Shipping Cost</td>
@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                     <td>Total (Incl. VAT)</td>
-                    <td><span>$ {{getInclVat().toFixed(2)}}</span></td>
+                    <td><span>$ {{totals.inclVat.toFixed(2)}}</span></td>
                 </tr>
             </table>
         </td>
@@ -26,41 +26,16 @@
 
 <script>
   import {mapState} from "vuex";
+  import {usePrice} from "@/use/price";
 
   export default {
       name: "CartTotal",
-      methods: {
-          calculateTotal() {
-              let totals = {
-                  inclVat: 0,
-                  exclVat: 0,
-                  vat: 0,
-              }
-
-              let percentage = import.meta.env.VITE_VAT;
-
-              for (let product of this.localBasket.data) {
-                  let total = product.price * product.quantity;
-                  totals.inclVat += total;
-                  let exclVatTmp = total/(1 + percentage/100);
-                  totals.exclVat += exclVatTmp;
-                  totals.vat += total - exclVatTmp;
-              }
-
-              return totals;
-          },
-          getVat() {
-              return this.calculateTotal().vat;
-          },
-          getInclVat() {
-              return this.calculateTotal().inclVat;
-          },
-          getExclVat() {
-              return this.calculateTotal().exclVat;
-          },
+      setup() {
+          let price = usePrice('basket/data');
+          return {totals: price.totals};
       },
       computed: {
-          ...mapState(['localBasket'])
+          ...mapState(['basket'])
       }
   }
 </script>

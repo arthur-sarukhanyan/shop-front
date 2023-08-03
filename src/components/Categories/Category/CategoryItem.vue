@@ -59,6 +59,7 @@ export default {
             filters.filters.push({field : 'allCategories>id', 'value' : id});
             this.$store.commit('products/SET_FILTERS', filters);
             this.$store.dispatch('products/getData');
+            this.$router.push('/products');
         }
     },
     computed: {

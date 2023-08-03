@@ -17,7 +17,7 @@
             <cart-item-total :product="product"></cart-item-total>
         </td>
         <td class="cart_delete">
-            <a class="cart_quantity_delete c-pointer"><i class="fa fa-times"></i></a>
+            <a @click="removeProduct(product.id)" class="cart_quantity_delete c-pointer"><i class="fa fa-times"></i></a>
         </td>
     </tr>
 </template>
@@ -35,11 +35,14 @@ export default {
     methods: {
         updateQuantity(quantity) {
             this.product.quantity = quantity;
-            this.$store.dispatch('localBasket/setData', this.product);
-        }
+            this.$store.dispatch('basket/addProduct', this.product);
+        },
+        removeProduct(id) {
+            this.$store.dispatch('basket/removeProduct', id);
+        },
     },
     computed: {
-        ...mapState(['localBasket'])
+        ...mapState(['basket'])
     }
 }
 </script>

@@ -10,17 +10,12 @@ import './assets/extra/extraAssets'
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import axios from './services/axios'
 import router from './services/router'
 import store from './services/store';
 
 const app = createApp(App);
 
-// app.use(axios);
-
 app.use(router);
 app.use(store);
-
-// app.use(Vuex);
 
 app.mount('#app');

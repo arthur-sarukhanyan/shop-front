@@ -26,9 +26,7 @@ export default {
         }
     },
     computed: {
-        filterGroups() {
-            return filterGroups
-        },
+
         ...mapState(['categories','filterGroups']),
     },
 }

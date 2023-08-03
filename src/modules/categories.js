@@ -11,7 +11,7 @@ export default {
     actions: {
         async getData({commit }) {
             const data = await httpClient.httpClient.get('categories');
-            commit('SET_DATA', await data.data);
+            commit('SET_DATA', await data);
         },
     },
     mutations: {

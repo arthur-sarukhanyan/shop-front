@@ -12,7 +12,7 @@
               </tr>
             </thead>
             <tbody>
-                <cart-item v-for="product of localBasket.data" :product="product"></cart-item>
+                <cart-item v-for="product of basket.data" :product="product"></cart-item>
                 <cart-total v-if="isCheckoutTable()"></cart-total>
             </tbody>
         </table>
@@ -33,7 +33,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['localBasket'])
+        ...mapState(['basket'])
     }
 }
 </script>

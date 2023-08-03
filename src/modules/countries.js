@@ -10,7 +10,7 @@ export default {
     },
     actions: {
         async getData({commit }) {
-            const data = await httpClient.httpClient.get('filter-groups');
+            const data = await httpClient.httpClient.get('countries');
             commit('SET_DATA', await data);
         },
     },
