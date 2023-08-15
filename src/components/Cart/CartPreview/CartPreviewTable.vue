@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 <cart-item v-for="product of basket.data" :product="product"></cart-item>
-                <cart-total v-if="isCheckoutTable()"></cart-total>
+                <cart-total v-if="isCheckoutTable()" :products="basket.data"></cart-total>
             </tbody>
         </table>
     </div>

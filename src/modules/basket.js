@@ -1,5 +1,6 @@
 import {useBasket} from "@/use/basket";
 import httpClient from "@/services/axios";
+import {useStorage} from "@/use/storage";
 
 export default {
     namespaced: true,
@@ -28,11 +29,17 @@ export default {
         },
         async getHttpBasket({commit}) {
             let basket = await httpClient.httpClient.get('basket');
-            commit('SET_DATA', basket.data.items);
+            commit('SET_DATA', basket.items);
         },
-        updateHttpBasket(data) {
-            console.log(data);
-            httpClient.httpClient.post('basket', data);
+        async submitBasket({commit, state}, profile = null) {
+            let data = {items: state.data};
+            if (profile) {
+                data.id = profile.id;
+            }
+
+            await httpClient.httpClient.post('basket', data);
+            useStorage().remove('basket');
+            commit('SET_DATA', []);
         }
     },
     mutations: {

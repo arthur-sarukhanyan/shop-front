@@ -32,7 +32,7 @@ export default {
                 store.dispatch('account/getData');
             } else {
                 let data = useStorage().get('basket') ?? [];
-                store.commit('basket/SET_DATA');
+                store.commit('basket/SET_DATA', data);
             }
         });
     },

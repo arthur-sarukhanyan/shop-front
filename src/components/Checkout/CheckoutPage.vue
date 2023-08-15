@@ -22,7 +22,7 @@
             <cart-preview-table></cart-preview-table>
             <payment-options></payment-options>
 
-            <button type="submit" v-if="isShipDataFilled()" @click="processCheckout" class="btn">Submit</button>
+            <button type="submit" v-if="isShipDataFilled()" @click="processCheckout" class="btn checkout-submit">Submit</button>
         </div>
     </section> <!--/#cart_items-->
 </template>
@@ -61,18 +61,26 @@ export default {
             this.authType = type;
         },
         processCheckout() {
-            console.log(this.profile);
+            if ((this.account.inited && this.account.data.details)) {
+                this.$store.dispatch('basket/submitBasket');
+            } else {
+                this.$store.dispatch('checkout/updateData', this.profile).then((data) => {
+                    this.$store.dispatch('basket/submitBasket', {id: data.data.id});
+                });
+            }
         },
         updateProfile(data) {
             this.profile = data;
         }
     },
     computed: {
-        ...mapState(['auth', 'account'])
+        ...mapState(['auth', 'account', 'basket'])
     }
 }
 </script>
 
 <style scoped>
-
+    .checkout-submit{
+        float: right;
+    }
 </style>

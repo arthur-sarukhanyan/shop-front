@@ -4,7 +4,7 @@
             <div class="col-sm-3" v-if="!isLoggedIn && authType !== 'guest'">
                 <auth-register></auth-register>
             </div>
-            <form @submit.prevent="handleSubmit">
+            <form @change.prevent="handleSubmit">
                 <div class="col-sm-5 clearfix">
                     <div class="bill-to">
                         <p>Ship To</p>
@@ -130,12 +130,14 @@
                                 <div class="form-group" :class="{'has-error': !form.phone.valid && form.phone.touched}">
                                     <input
                                         type="text"
-                                        placeholder="Phone"
+                                        placeholder="Phone *"
                                         name="phone"
                                         v-model="form.phone.value"
                                         @blur="form.phone.blur">
 
-                                    <small v-if="form.phone.errors.minLength && form.phone.touched" class="error-msg">Field
+                                    <small v-if="form.phone.errors.required && form.phone.touched" class="error-msg">Field
+                                        is required</small>
+                                    <small v-else-if="form.phone.errors.minLength && form.phone.touched" class="error-msg">Field
                                         minimal length is 8</small>
                                 </div>
                             </form>
@@ -159,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" :disabled="!isFormValid()" class="btn">Submit</button>
+<!--                <button type="submit" :disabled="!isFormValid()" class="btn">Submit</button>-->
             </form>
         </div>
     </div>
@@ -179,19 +181,25 @@ export default {
     },
     methods: {
         async handleSubmit() {
+            if(!this.isFormValid()) {
+                return;
+            }
+
             const data = {
                 company_name: this.form.companyName.value,
                 email: this.form.email.value,
                 first_name: this.form.firstName.value,
                 last_name: this.form.lastName.value,
                 address_1: this.form.address1.value,
-                address_2: this.form.address2.value,
                 zip: this.form.zip.value,
                 country_id: this.form.country.value,
                 city: this.form.city.value,
-                phone: this.form.phone.value,
-                notes: this.form.notes.value,
             };
+
+            if (this.form.address2.value) data.address_2 = this.form.address2.value;
+            if (this.form.phone.value) data.phone = this.form.phone.value;
+            if (this.form.notes.value) data.notes = this.form.notes.value;
+
 
             this.$emit('profile-update', data);
         },
@@ -238,7 +246,7 @@ export default {
                 value: '', validators: ['required', 'minLength:3']
             },
             phone: {
-                value: '', validators: ['minLength:8']
+                value: '', validators: ['required', 'minLength:8']
             },
             notes: {
                 value: '', validators: ['minLength:3']

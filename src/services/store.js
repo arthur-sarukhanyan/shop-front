@@ -8,6 +8,7 @@ import basket from "@/modules/basket";
 import auth from "@/modules/auth";
 import account from "@/modules/account";
 import countries from "@/modules/countries";
+import checkout from "@/modules/checkout";
 
 // Create a new store instance.
 const store = createStore({
@@ -20,6 +21,7 @@ const store = createStore({
         auth,
         account,
         countries,
+        checkout,
     }
 })
 

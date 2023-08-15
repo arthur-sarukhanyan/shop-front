@@ -24,7 +24,7 @@ export default {
     },
     mutations: {
         SET_DATA(state, data) {
-            state.data = data.data;
+            state.data = data;
         },
         SET_INITED(state) {
             state.inited = true;

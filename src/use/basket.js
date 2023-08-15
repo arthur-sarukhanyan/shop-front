@@ -7,23 +7,9 @@ import httpClient from "@/services/axios";
 import {computed} from "vue";
 
 export function useBasket(basket = []) {
-    const store = useStore();
-
-    // const getData = () => {
-    //     let data = null;
-    //
-    //     if (authStore.state.isLoggedIn) {
-    //         computed(() => store.dispatch('basket/getHttpBasket'))
-    //     } else {
-    //         data = useStorage().get('basket') ?? [];
-    //     }
-    //
-    //     return data;
-    // }
-
     const storeData = (data) => {
         if (authStore.state.isLoggedIn) {
-            httpClient.httpClient.post('basket', {items: data});
+            httpClient.httpClient.put('basket', {items: data});
         } else {
             useStorage().set('basket', data);
         }

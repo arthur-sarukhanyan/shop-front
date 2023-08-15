@@ -1,21 +1,23 @@
-import {computed, ref, watch} from 'vue';
-import {useStore} from "vuex";
+import {ref} from 'vue';
 
-export function usePrice(getterKey) {
-    const store = useStore();
+export function usePrice() {
     let totals = ref({
         inclVat: 0,
         exclVat: 0,
         vat: 0,
     });
 
-    const calculateTotal = (items) => {
+    const calculateTotal = (products) => {
         totals.value.inclVat = 0;
         totals.value.vat = 0;
         totals.value.exclVat = 0;
         let percentage = import.meta.env.VITE_VAT;
 
-        for (let item of items) {
+        if (!products) {
+            return;
+        }
+
+        for (let item of products) {
             let total = item.price * item.quantity;
             totals.value.inclVat += total;
             let exclVatTmp = total/(1 + percentage/100);
@@ -24,8 +26,5 @@ export function usePrice(getterKey) {
         }
     }
 
-    watch(computed(() => store.getters[getterKey]), calculateTotal, {deep: true});
-    calculateTotal(store.getters[getterKey]);
-
-    return {totals};
+    return {totals, calculateTotal};
 }

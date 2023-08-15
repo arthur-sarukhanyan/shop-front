@@ -9,14 +9,15 @@ export default {
         data: state => state.data,
     },
     actions: {
-        async getData({commit}, id) {
-            const data = await httpClient.httpClient.get('products/' + id);
+        async updateData({commit}, profileData) {
+            const data = await httpClient.httpClient.post('profile', profileData);
             commit('SET_DATA', await data);
+            return data;
         },
     },
     mutations: {
         SET_DATA(state, data) {
-            state.data = data;
+            state.data = data.data;
         },
     }
 }

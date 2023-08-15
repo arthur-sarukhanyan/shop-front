@@ -27,11 +27,20 @@
 <script>
   import {mapState} from "vuex";
   import {usePrice} from "@/use/price";
+  import {computed, watch} from "vue";
 
   export default {
       name: "CartTotal",
-      setup() {
-          let price = usePrice('basket/data');
+      props: ['products'],
+      setup(props) {
+          let price = usePrice();
+
+          watch(props, (updatedProps) => {
+              price.calculateTotal(updatedProps.products);
+          });
+
+          price.calculateTotal(props.products);
+
           return {totals: price.totals};
       },
       computed: {
